@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="&lt;dependency&gt;     &lt;groupId&gt;com.jfoenix&lt;/groupId&gt;     &lt;artifactId&gt;jfoenix&lt;/artifactId&gt;     &lt;version&gt;8.0.8&lt;/version&gt; &lt;/dependency&gt;" level="project" />
+    <orderEntry type="library" name="com.jfoenix:jfoenix:8.0.8" level="project" />
+    <orderEntry type="library" name="eu.hansolo:tilesfx:1.6.5" level="project" />
+    <orderEntry type="library" name="io.github.typhon0:AnimateFX:1.2.0" level="project" />
+    <orderEntry type="library" name="fontawesomefx-8.9" level="project" />
+  </component>
+</module>

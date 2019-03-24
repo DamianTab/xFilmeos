@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="762.0" prefWidth="667.0" styleClass="AnchorPane" stylesheets="@InformationPane.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.InformationPane_Controller">
+   <children>
+      <ImageView fx:id="photo" fitHeight="298.0" fitWidth="253.0" layoutX="29.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" />
+      <LineChart fx:id="lineChart" layoutX="29.0" layoutY="505.0" prefHeight="253.0" prefWidth="419.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </LineChart>
+      <Label fx:id="productLabel" alignment="CENTER" layoutX="168.0" layoutY="6.0" prefHeight="45.0" prefWidth="331.0" text="CO TO JEST" textAlignment="CENTER" />
+      <Text layoutX="301.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Title" textAlignment="CENTER" wrappingWidth="330.6708984375" />
+      <Text layoutX="301.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Description" textAlignment="CENTER" wrappingWidth="330.6708984375" />
+      <Text layoutX="301.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Production Countries" textAlignment="CENTER" wrappingWidth="330.6708984375" />
+      <Text layoutX="457.0" layoutY="528.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Length" textAlignment="CENTER" wrappingWidth="188.999998614192" />
+      <Text layoutX="456.0" layoutY="599.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Rating" textAlignment="CENTER" wrappingWidth="188.999998614192" />
+      <Text layoutX="457.0" layoutY="669.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Shows" textAlignment="CENTER" wrappingWidth="188.999998614192" />
+      <Text fx:id="changableTitle1" layoutX="29.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Cos1" textAlignment="CENTER" wrappingWidth="602.6708984375" />
+      <Text fx:id="changableTitle2" layoutX="29.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Co2" textAlignment="CENTER" wrappingWidth="602.6708984375" />
+      <JFXButton fx:id="deleteButton" alignment="CENTER" contentDisplay="TOP" layoutX="551.0" layoutY="14.0" onAction="#deleteFile" prefHeight="45.0" prefWidth="76.0" text="Close">
+         <graphic>
+            <FontAwesomeIconView glyphName="CALENDAR_TIMES_ALT" size="25" />
+         </graphic>
+      </JFXButton>
+      <JFXTextArea fx:id="title" editable="false" layoutX="301.0" layoutY="80.0" prefHeight="17.0" prefWidth="331.0" styleClass="textField" text="dfsdfsdfdsf" wrapText="true" />
+      <JFXTextArea fx:id="description" editable="false" layoutX="301.0" layoutY="147.0" prefHeight="142.0" prefWidth="331.0" styleClass="textField" text="asfnakjsf asf" wrapText="true" />
+      <JFXTextArea fx:id="productionCountries" editable="false" layoutX="301.0" layoutY="318.0" prefHeight="17.0" prefWidth="331.0" styleClass="textField" wrapText="true" />
+      <JFXTextArea fx:id="changable1" editable="false" layoutX="29.0" layoutY="383.0" prefHeight="45.0" prefWidth="603.0" styleClass="textField" wrapText="true" />
+      <JFXTextArea fx:id="changable2" editable="false" layoutX="29.0" layoutY="453.0" prefHeight="45.0" prefWidth="603.0" styleClass="textField" wrapText="true" />
+      <JFXTextArea fx:id="length" editable="false" layoutX="457.0" layoutY="531.0" prefHeight="0.0" prefWidth="189.0" styleClass="textField" wrapText="true" />
+      <JFXTextArea fx:id="rating" editable="false" layoutX="456.0" layoutY="602.0" prefHeight="27.0" prefWidth="189.0" styleClass="textField" wrapText="true" />
+      <JFXTextArea fx:id="numberOfShows" editable="false" layoutX="457.0" layoutY="672.0" prefHeight="45.0" prefWidth="189.0" styleClass="textField" wrapText="true" />
+   </children>
+</AnchorPane>

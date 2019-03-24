@@ -1,0 +1,54 @@
+* {
+    -fx-primary :  #303030;
+    -fx-secondary :  #565656;
+	-fx-buttonColour : #8E8E8E;
+	-fx-textColour: #FFFFFF;
+}
+
+/* Przyciski*/
+
+
+
+.button:hover{
+    -fx-background-color: -fx-primary;
+    -fx-text-fill: #FFFFFF;
+    -fx-text-alignment: center;
+}
+.button{
+    -fx-background-color: #8E8E8E;
+
+}
+.normalButton{
+		-fx-font-family: "Berlin Sans FB";
+}
+
+
+/*Inne panele*/
+.AnchorPane{
+    -fx-background-color: -fx-secondary;
+	    -fx-text-fill: #FFFFFF;
+}
+
+.text{
+		-fx-text-fill: #FFFFFF;
+		-fx-font-family: "Berlin Sans FB";
+
+}
+
+.textField{
+			-fx-text-fill: #FFFFFF;
+		-fx-font-family: "Berlin Sans FB";
+    -fx-background-color: -fx-buttonColour;
+	 -fx-text-alignment: center ;	    
+	 -fx-font-size: 13pt; 
+
+}
+.chart{			
+	    -fx-background-color: -fx-buttonColour;
+}
+.label{
+		-fx-font-family: "Berlin Sans FB";
+    -fx-background-color: -fx-buttonColour;
+	    -fx-font-size: 20pt; 
+
+}
