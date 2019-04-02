@@ -12,20 +12,29 @@ public class CSVReaderExample {
 
         String[][] buffer = new String [howManyFields][1000];
         String csvFile = new File("").getAbsolutePath();
-        csvFile = csvFile.replaceAll("\\\\","\\\\\\\\");
-        csvFile += "\\\\src\\\\CSV\\\\"+fileName;
+
+
+        if (System.getProperty("os.name").equals("Linux")){
+            System.out.println(csvFile);
+            csvFile += "/src/CSV/"+fileName;
+            System.out.println(csvFile);
+
+        }else{
+            csvFile = csvFile.replaceAll("\\\\","\\\\\\\\");
+            csvFile += "\\\\src\\\\CSV\\\\"+fileName;
+        }
+
+
         CSVReader reader = null;
         try {
             reader = new CSVReader(new FileReader(csvFile));
             String[] line;
-            line = reader.readNext();
+            line = reader.readNext(); //blank line
             int lineNumber=0;
             while ((line = reader.readNext()) != null) {
                 for (int i = 0; i <line.length; i++) {
                     buffer[i][lineNumber]=line[i];
-//                    System.out.println(buffer[i][lineNumber]);
                 }
-//                System.out.println("-----");
                 lineNumber++;
             }
         } catch (IOException e) {
