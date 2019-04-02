@@ -1,28 +1,13 @@
 package Entities;
 
-import CSV.CSVReaderExample;
+import CSV.MyCSVReader;
 import GUI.Window_App_UI_Controller;
-import Main_package.Main;
-import Main_package.SimulationException;
 import Main_package.SimulationExceptionContractor;
-import Products.Products_Manager;
-import com.sun.org.apache.xpath.internal.operations.Number;
-import sun.misc.Cleaner;
-
-import javax.management.RuntimeErrorException;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.*;
 
 public class Entities_Manager implements Serializable {
-
-    //    public static Entities_Manager getInstance(){
-//    return SingletonHolder.INSTANCE;
-//    }
-
-    //    private static class SingletonHolder {
-//        private static final Entities_Manager INSTANCE = new Entities_Manager();
-//    }
 
     private static Entities_Manager INSTANCE;
     public static synchronized Entities_Manager getInstance() {
@@ -54,18 +39,18 @@ public class Entities_Manager implements Serializable {
     private int NumberOfDistributors =0;
     private HashMap<Integer, Distributor> ContainerOfDistributors = new HashMap<>();
 
-    public String[] getRandEmail() {
-        return RandEmail;
-    }
-
 
     public HashMap<Integer, Client> getContainerOfClients() {
         return ContainerOfClients;
     }
+
     public HashMap<Integer, Distributor> getContainerOfDistributors() {
         return ContainerOfDistributors;
     }
 
+    public String[] getRandEmail() {
+        return RandEmail;
+    }
 
     public int getNumberOfDistributors() {
         return NumberOfDistributors;
@@ -99,29 +84,33 @@ public class Entities_Manager implements Serializable {
         ContainerOfClients = ContainerOfClients;
     }
 
-
     public void loadAllDataFromCSV(){
-        loadContractors();
-        loadClients();
-        loadDistributors();
+        loadContractorsFromCSV();
+        loadClientsFromCSV();
+        loadDistributorsFromCSV();
     }
-    public void loadContractors(){
-       String[][] temp = CSVReaderExample.read(3,"contractor.csv");
+
+    public void loadContractorsFromCSV(){
+       String[][] temp = MyCSVReader.read(3,"contractor.csv");
        RandName = temp[0];
        RandSurname = temp[1];
        RandEmail = temp[2];
     }
-    public void loadClients(){
-        String[][] temp = CSVReaderExample.read(3,"client.csv");
+
+    public void loadClientsFromCSV(){
+        String[][] temp = MyCSVReader.read(3,"client.csv");
         RandCardNumberClient = temp[0];
         RandDateOfBirth = temp[1];
         RandNick = temp[2];
     }
-    public void loadDistributors(){
-        String[][] temp = CSVReaderExample.read(2,"distributor.csv");
+
+    public void loadDistributorsFromCSV(){
+        String[][] temp = MyCSVReader.read(2,"distributor.csv");
         RandCompanyName = temp[0];
         RandCardNumberDistributor = temp[1];
     }
+
+
 
     public Client addClient() throws SimulationExceptionContractor {
         if (NumberOfContractors>=1000) throw new SimulationExceptionContractor();
@@ -159,6 +148,7 @@ public class Entities_Manager implements Serializable {
         Window_App_UI_Controller.addToClientObservableList(tmpClient);
         return  tmpClient;
     }
+
     public Distributor addDistributor() throws SimulationExceptionContractor{
         if (NumberOfContractors>=1000) throw new SimulationExceptionContractor();
         String email = RandEmail[NumberOfContractors];
@@ -185,21 +175,24 @@ public class Entities_Manager implements Serializable {
     public void deleteClient(Client client){
         ContainerOfClients.remove(client.getEmail().hashCode());
     }
+
     public void deleteDistributor(Distributor distributor){
         ContainerOfDistributors.remove(distributor.getEmail().hashCode());
     }
 
 
-    public void payMontlyPaymentToAllDistributors(){
+
+    public void payMonthlyPaymentToAllDistributors(){
         for (Distributor distributor:ContainerOfDistributors.values()) {
             if (distributor.getisMonthlyPaid() && distributor.getAmountOfTheContract()!=0)
-                distributor.reciveMontlyPaymentFromVODService();
+                distributor.receiveMonthlyPaymentFromVODService();
         }
     }
-    public void payForSubscribtionByAllClients(){
+
+    public void payForSubscriptionByAllClients(){
         for (Client client:ContainerOfClients.values()) {
-            if (client.getTypeOfSubscryption()!=null)
-                client.payForSubscribtion();
+            if (client.getTypeOfSubscription()!=null)
+                client.payForSubscription();
         }
     }
 
@@ -209,6 +202,7 @@ public class Entities_Manager implements Serializable {
         ContainerOfClients.forEach((k,v)->System.out.println("Key: " + k + " Value: " + v));
         System.out.println("----------------");
     }
+
     public void showContainerOfDistributors(){
         System.out.println("----------------");
         ContainerOfDistributors.forEach((k,v)->System.out.println("Key: " + k + " Value: " + v));

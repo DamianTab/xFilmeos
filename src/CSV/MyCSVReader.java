@@ -1,28 +1,17 @@
 package CSV;
 
 import com.opencsv.CSVReader;
-
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class CSVReaderExample {
+public class MyCSVReader implements PathToFile{
 
     public static String[][] read(int howManyFields, String fileName) {
 
         String[][] buffer = new String [howManyFields][1000];
-        String csvFile = new File("").getAbsolutePath();
-
-
-        if (System.getProperty("os.name").equals("Linux")){
-            System.out.println(csvFile);
-            csvFile += "/src/CSV/"+fileName;
-            System.out.println(csvFile);
-
-        }else{
-            csvFile = csvFile.replaceAll("\\\\","\\\\\\\\");
-            csvFile += "\\\\src\\\\CSV\\\\"+fileName;
-        }
+//        Windows
+//        csvFile += "\\\\src\\\\CSV\\\\"+fileName;
+        String csvFile = PathToFile.getFilePath("/src/CSV/",fileName);
 
 
         CSVReader reader = null;

@@ -135,9 +135,9 @@ public class Time_Manager implements Runnable, Serializable {
         @Override
         public void run() {
             showFinancialStatus();
-            Entities_Manager.getInstance().payForSubscribtionByAllClients();
+            Entities_Manager.getInstance().payForSubscriptionByAllClients();
             showFinancialStatus();
-            Entities_Manager.getInstance().payMontlyPaymentToAllDistributors();
+            Entities_Manager.getInstance().payMonthlyPaymentToAllDistributors();
             showFinancialStatus();
 
             if (getFinancialConditionOfService()<0)

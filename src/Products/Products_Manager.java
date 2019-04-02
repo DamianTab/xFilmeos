@@ -1,17 +1,19 @@
 package Products;
 
-import CSV.CSVReaderExample;
+import CSV.MyCSVReader;
+import CSV.PathToFile;
 import Entities.Distributor;
 import GUI.Window_App_UI_Controller;
 import Main_package.SimulationExceptionProduct;
 import Main_package.Time_Manager;
 
 import java.io.Serializable;
+import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-public class Products_Manager implements Serializable {
+public class Products_Manager implements Serializable, PathToFile {
 
 //    public static Products_Manager getInstance(){
 //        return Products_Manager.SingletonHolder.INSTANCE;
@@ -171,7 +173,17 @@ public class Products_Manager implements Serializable {
             ActorsList.add(RandActors[generate.nextInt(1000)]);
         }
 
-        Movie tmpMovie = new Movie(title,String.valueOf(generate.nextInt(300))+".jpg",RandDescription[NumberOfProducts],
+        String photoFile = generate.nextInt(300)+".jpg";
+        System.out.println(photoFile);
+        photoFile = PathToFile.getFilePath("/src/Images/",photoFile);
+
+
+//        Druga wersja
+//        String photoFile = generate.nextInt(300)+".jpg";
+//        System.out.println(photoFile);
+//        photoFile = "src/Images/" + photoFile;
+
+        Movie tmpMovie = new Movie(title,photoFile,RandDescription[NumberOfProducts],
                 date,generate.nextInt(100)+90,distributor,RandCountries[NumberOfProducts],generate.nextInt(9)+1,
                 generate.nextInt(10)+10,ActorsList,RandURLTrailer[NumberOfMovies],RandGenre[NumberOfMovies],30);
 
@@ -198,8 +210,12 @@ public class Products_Manager implements Serializable {
         }
         LocalDate date = LocalDate.parse(RandDate[NumberOfProducts]);
 
+        String photoFile = generate.nextInt(300)+".jpg";
+        System.out.println(photoFile);
+        photoFile = PathToFile.getFilePath("/src/Images/",photoFile);
 
-        Live tmpLive = new Live(title,String.valueOf(generate.nextInt(300))+".jpg",RandDescription[NumberOfProducts],
+
+        Live tmpLive = new Live(title,photoFile,RandDescription[NumberOfProducts],
                 date,generate.nextInt(100)+90,distributor,RandCountries[NumberOfProducts],generate.nextInt(9)+1,
                 generate.nextInt(10)+10, Time_Manager.getInstance().getTimeOfSimulation().plus(generate.nextInt(20)+1, ChronoUnit.DAYS));
 
@@ -248,7 +264,11 @@ public class Products_Manager implements Serializable {
             ActorsList.add(RandActors[generate.nextInt(1000)]);
         }
 
-        Serial tmpSerial = new Serial(title,String.valueOf(generate.nextInt(300))+".jpg",RandDescription[NumberOfProducts],
+        String photoFile = generate.nextInt(300)+".jpg";
+        System.out.println(photoFile);
+        photoFile = PathToFile.getFilePath("/src/Images/",photoFile);
+
+        Serial tmpSerial = new Serial(title,photoFile,RandDescription[NumberOfProducts],
                 date,generate.nextInt(100)+90,distributor,RandCountries[NumberOfProducts],generate.nextInt(9)+1,
                 generate.nextInt(10)+10,ActorsList,ListOfSeasons,RandGenre[NumberOfMovies]);
 
@@ -270,7 +290,7 @@ public class Products_Manager implements Serializable {
         loadEpisodes();
     }
     public void loadProducts(){
-        String[][] temp = CSVReaderExample.read(5,"products.csv");
+        String[][] temp = MyCSVReader.read(5,"products.csv");
         RandTitle = temp[0];
         RandURLPhoto = temp [1];
         RandDescription = temp [2];
@@ -278,13 +298,13 @@ public class Products_Manager implements Serializable {
         RandCountries = temp [4];
     }
     public void loadMovies(){
-        String[][] temp = CSVReaderExample.read(3,"movies.csv");
+        String[][] temp = MyCSVReader.read(3,"movies.csv");
         RandActors = temp[0];
         RandURLTrailer = temp [1];
         RandGenre = temp [2];
     }
     public void loadEpisodes(){
-        String[][] temp = CSVReaderExample.read(1,"episodes.csv");
+        String[][] temp = MyCSVReader.read(1,"episodes.csv");
         RandTitlesForEpisode = temp[0];
     }
 

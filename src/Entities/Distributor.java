@@ -16,7 +16,7 @@ public class Distributor extends Contractor implements Runnable, Serializable {
     private float AmountOfTheContract;
     private boolean isMonthlyPaid;
     private boolean shutdown = false;
-    private String StrMonthlyPain;
+    private String StringMonthlyPaid;
 
     public Distributor(String name, String surname, String email, String companyName, double bankAccountNumber, float amountOfTheContract, boolean typeOfContract) {
         super(name, surname, email);
@@ -24,16 +24,16 @@ public class Distributor extends Contractor implements Runnable, Serializable {
         BankAccountNumber = bankAccountNumber;
         AmountOfTheContract = amountOfTheContract;
         isMonthlyPaid = typeOfContract;
-        if (isMonthlyPaid) StrMonthlyPain = "True";
-        else StrMonthlyPain = "False";
+        if (isMonthlyPaid) StringMonthlyPaid = "True";
+        else StringMonthlyPaid = "False";
     }
 
-    public String getStrMonthlyPain() {
-        return StrMonthlyPain;
+    public String getStringMonthlyPaid() {
+        return StringMonthlyPaid;
     }
 
-    public void setStrMonthlyPain(String strMonthlyPain) {
-        StrMonthlyPain = strMonthlyPain;
+    public void setStringMonthlyPaid(String stringMonthlyPaid) {
+        StringMonthlyPaid = stringMonthlyPaid;
     }
 
     public String getCompanyName() {
@@ -107,10 +107,11 @@ public class Distributor extends Contractor implements Runnable, Serializable {
         }
     }
 
-    public void reciveMoneyForShowingMyProduct(float price){
+    public void receiveMoneyForShowingMyProduct(float price){
         Time_Manager.getInstance().AdditionToFinancialConditionOfService(-price);
     }
-    public void  reciveMontlyPaymentFromVODService(){
+
+    public void receiveMonthlyPaymentFromVODService(){
         Time_Manager.getInstance().AdditionToFinancialConditionOfService(-AmountOfTheContract);
     }
 
@@ -118,6 +119,7 @@ public class Distributor extends Contractor implements Runnable, Serializable {
         shutdown=true;
         Threads_Manager.getInstance().deleteDistributorThread(Thread.currentThread());
     }
+
     public Thread resumeThread(){
         shutdown=false;
         Thread tmp = new Thread(this);

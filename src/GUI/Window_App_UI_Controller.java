@@ -36,7 +36,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 import java.io.*;
@@ -217,6 +216,7 @@ public class Window_App_UI_Controller implements Initializable, Serializable {
 
 
     }
+
     @FXML
     void loadSimulation(ActionEvent event) {
 
@@ -294,28 +294,34 @@ public class Window_App_UI_Controller implements Initializable, Serializable {
 
         new Thread(Discount_Manager.getInstance()).start();
     }
+
     @FXML
     void addDistributor(ActionEvent event) {
         Threads_Manager.getInstance().addNewDistributorThread();
     }
+
     @FXML
     void addUser(ActionEvent event) {
         Threads_Manager.getInstance().addNewClientThread();
     }
+
     @FXML
     void backwardButton(ActionEvent event) {
         Time_Manager.getInstance().setIfStopSimulation(false);
         Time_Manager.getInstance().slowDownSimulation();
     }
+
     @FXML
     void forwardButton(ActionEvent event) {
         Time_Manager.getInstance().setIfStopSimulation(false);
         Time_Manager.getInstance().speedUpSimulation();
     }
+
     @FXML
     void pauseButton(ActionEvent event) {
         Time_Manager.getInstance().startOrStopRunTime();
     }
+
     @FXML
     void refreshTables(ActionEvent event) {
         refreshClientList();
@@ -323,6 +329,7 @@ public class Window_App_UI_Controller implements Initializable, Serializable {
         refreshDiscountList();
         refreshSubscriptionList();
     }
+
     @FXML
     void closeSimulation(ActionEvent event) {
         Threads_Manager.getInstance().shutdownAllThreads();
@@ -330,6 +337,7 @@ public class Window_App_UI_Controller implements Initializable, Serializable {
         stage.close();
         System.exit(0);
     }
+
 
     public void loadSplashScreen(){
         try {
@@ -376,6 +384,7 @@ public class Window_App_UI_Controller implements Initializable, Serializable {
             e.printStackTrace();
         }
     }
+
     public void showDisabledButtonsAfterLoadingData(){
         loadButton.setDisable(true);
         pureSimulationButton.setDisable(true);
@@ -414,6 +423,7 @@ public class Window_App_UI_Controller implements Initializable, Serializable {
         discountList.add(discount);
     }
 
+
     private boolean fadeInRefreshButton = false;
     private boolean fadeOutRefreshButton = true;
     private int whichPaneNow = 1;
@@ -424,42 +434,43 @@ public class Window_App_UI_Controller implements Initializable, Serializable {
                 if (whichPaneNow!=1){
                     hideRefreshButton();
 
-                    goOut(whichPaneNow);
+                    OldScrollPaneGoOut(whichPaneNow);
                     whichPaneNow = 1;
-                    goIn(whichPaneNow);
+                    NewScrollPaneGoIn(whichPaneNow);
                 }
                 break;
             case "S":
                 if (whichPaneNow!=2){
                     hideRefreshButton();
 
-                    goOut(whichPaneNow);
+                    OldScrollPaneGoOut(whichPaneNow);
                     whichPaneNow=2;
-                    goIn(whichPaneNow);
+                    NewScrollPaneGoIn(whichPaneNow);
 
                 }
                 break;
             case "L":
                 if (whichPaneNow!=3){
                     hideRefreshButton();
-                    goOut(whichPaneNow);
+                    OldScrollPaneGoOut(whichPaneNow);
                     whichPaneNow=3;
-                    goIn(whichPaneNow);
+                    NewScrollPaneGoIn(whichPaneNow);
                 }
                 break;
             case "A":
                 if (whichPaneNow!=4){
                     showRefreshButton();
 
-                    goOut(whichPaneNow);
+                    OldScrollPaneGoOut(whichPaneNow);
                     whichPaneNow = 4;
-                    goIn(whichPaneNow);
+                    NewScrollPaneGoIn(whichPaneNow);
 
                 }
                 break;
         }
 
     }
+
     public void showRefreshButton(){
 
         if (!fadeInRefreshButton){
@@ -474,6 +485,7 @@ public class Window_App_UI_Controller implements Initializable, Serializable {
 
 
     }
+
     public void hideRefreshButton(){
         if (!fadeOutRefreshButton){
             new FadeOut(refreshButton).play();
@@ -482,7 +494,8 @@ public class Window_App_UI_Controller implements Initializable, Serializable {
         fadeInRefreshButton = false;
         fadeOutRefreshButton = true;
     }
-    public void goOut(int number){
+
+    public void OldScrollPaneGoOut(int number){
         switch (number){
             case 1:
                 movieScrollPane.setVisible(false);
@@ -502,7 +515,8 @@ public class Window_App_UI_Controller implements Initializable, Serializable {
                 break;
         }
     }
-    public void goIn(int number){
+
+    public void NewScrollPaneGoIn(int number){
         switch (number){
             case 1:
                 movieScrollPane.setVisible(true);
@@ -522,7 +536,6 @@ public class Window_App_UI_Controller implements Initializable, Serializable {
 
                 break;
             case 4:
-//                if (!adminBoxPane.isVisible()) adminBoxPane.setVisible(true);
                 adminBoxPane.setVisible(true);
                 adminBoxPane.setDisable(false);
                 new ZoomIn(adminBoxPane).play();
@@ -559,6 +572,7 @@ public class Window_App_UI_Controller implements Initializable, Serializable {
         S3.setCellValueFactory(new PropertyValueFactory<>("NumberOfDevices"));
         S4.setCellValueFactory(new PropertyValueFactory<>("MaxResolution"));
     }
+
     public void refreshClientList(){
         clientList.clear();
         Object[] values = Entities_Manager.getInstance().getContainerOfClients().values().toArray();
@@ -588,6 +602,7 @@ public class Window_App_UI_Controller implements Initializable, Serializable {
         subscriptionList.clear();
         subscriptionList.addAll(Subscription.Basic,Subscription.Family,Subscription.Premium);
     }
+
     public void loadDataToTableView(){
         refreshClientList();
         refreshDistributorList();
@@ -614,7 +629,12 @@ public class Window_App_UI_Controller implements Initializable, Serializable {
         lbl.setWrapText(true);
 //        lbl.setStyle("-fx-background-color:rgb("+100+","+250+","+0+");");
 //        Image img = new Image("https://picsum.photos/260/330/?random");
-        Image img = new Image(product.getPhotoURL());
+
+
+        File file = new File(product.getPhotoURL());
+        Image img = new Image(file.toURI().toString());
+
+//        Image img = new Image(product.getPhotoURL());
         ImageView imageView = new ImageView(img);
         imageView.setFitHeight(320);
         imageView.fitWidthProperty().bind(lbl.widthProperty());

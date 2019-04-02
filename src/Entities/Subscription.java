@@ -50,4 +50,6 @@ public enum Subscription implements Serializable {
     public void setMaxResolution(String maxResolution) {
         MaxResolution = maxResolution;
     }
+
+
 }

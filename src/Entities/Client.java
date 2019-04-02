@@ -5,16 +5,16 @@ import Main_package.Time_Manager;
 import Products.Live;
 import Products.Product;
 import Products.Products_Manager;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Random;
 
-public class Client extends Contractor implements Runnable, Serializable {
+public class Client extends Contractor implements Runnable, Serializable
+{
     private double CardNumber;
     private LocalDate DateOfBirth;
     private String Nick;
-    private Subscription TypeOfSubscryption;
+    private Subscription TypeOfSubscription;
     private boolean shutdown = false;
 
     public Client(String name, String surname, String email,double cardNumber, LocalDate dateOfBirth, String nick, Subscription subscription) {
@@ -22,8 +22,9 @@ public class Client extends Contractor implements Runnable, Serializable {
         CardNumber = cardNumber;
         DateOfBirth = dateOfBirth;
         Nick = nick;
-        TypeOfSubscryption = subscription;
+        TypeOfSubscription = subscription;
     }
+
     public double getCardNumber() {
         return CardNumber;
     }
@@ -48,17 +49,17 @@ public class Client extends Contractor implements Runnable, Serializable {
         Nick = nick;
     }
 
-    public Subscription getTypeOfSubscryption() {
-        return TypeOfSubscryption;
+    public Subscription getTypeOfSubscription() {
+        return TypeOfSubscription;
     }
 
-    public void setTypeOfSubscryption(Subscription typeofsubscryption) {
-        TypeOfSubscryption = typeofsubscryption;
+    public void setTypeOfSubscription(Subscription typeofsubscryption) {
+        TypeOfSubscription = typeofsubscryption;
     }
 
     public void show(){
         super.show();
-        System.out.println(CardNumber +"  "+ DateOfBirth.toString() +"  "+Nick+"  "+ TypeOfSubscryption );
+        System.out.println(CardNumber +"  "+ DateOfBirth.toString() +"  "+Nick+"  "+ TypeOfSubscription);
     }
 
     public void payMoneyToService(float amount){
@@ -84,7 +85,7 @@ public class Client extends Contractor implements Runnable, Serializable {
         }while (values.length==0);
 
         Product randomProduct = (Product) values[generate.nextInt(values.length)];
-        if (TypeOfSubscryption == null || randomProduct instanceof Live){ // Jeśli klient nie ma subskrypcji lub jest to Live to płaci jednorazowo
+        if (TypeOfSubscription == null || randomProduct instanceof Live){ // Jeśli klient nie ma subskrypcji lub jest to Live to płaci jednorazowo
             if (randomProduct instanceof Live){
                 Live tmpLive = (Live) randomProduct;
                 if (tmpLive.getDateOfTheShow().isAfter(Time_Manager.getInstance().getTimeOfSimulation())){
@@ -95,12 +96,12 @@ public class Client extends Contractor implements Runnable, Serializable {
         }
         randomProduct.addValueToShownCounter();
 //        randomProduct.show();
-        if (!randomProduct.getProductDistributor().getisMonthlyPaid()) // Jeśli dystrybutor nie ma ryczałtu miesięcznego to serwis od razu płaci za obejrzenie
-            randomProduct.getProductDistributor().reciveMoneyForShowingMyProduct(randomProduct.getPrice()/10);
+        if (!randomProduct.getProductDistributor().getisMonthlyPaid()) // Jeśli dystrybutor nie ma ryczałtu miesięcznego to od razu płaci serwisowi za obejrzenie
+            randomProduct.getProductDistributor().receiveMoneyForShowingMyProduct(randomProduct.getPrice()/10);
     }
 
-    public void payForSubscribtion(){
-        Time_Manager.getInstance().AdditionToFinancialConditionOfService(TypeOfSubscryption.getPrice());
+    public void payForSubscription(){
+        Time_Manager.getInstance().AdditionToFinancialConditionOfService(TypeOfSubscription.getPrice());
     }
 
     public void shutdownThread(){
@@ -108,6 +109,7 @@ public class Client extends Contractor implements Runnable, Serializable {
         Threads_Manager threads_manager = Threads_Manager.getInstance();
         threads_manager.deleteClientThread(Thread.currentThread());
     }
+
     public Thread resumeThread(){
         shutdown=false;
         Thread tmp = new Thread(this);

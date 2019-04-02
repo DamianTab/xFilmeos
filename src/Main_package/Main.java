@@ -1,8 +1,5 @@
 package Main_package;
 
-import Entities.Entities_Manager;
-import Products.Discount_Manager;
-import Products.Products_Manager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

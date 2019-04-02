@@ -42,4 +42,6 @@ public abstract class Contractor implements Serializable {
         System.out.println(Name+"  "+ Surname+"  "+Email);
     }
 
+
+
 }

@@ -26,7 +26,7 @@
       <TextField id="SearchBar" layoutX="229.0" layoutY="31.0" prefHeight="40.0" prefWidth="843.0" promptText="Search" AnchorPane.leftAnchor="229.0" AnchorPane.rightAnchor="228.0" />
       <ImageView id="ProductionLogo" fitHeight="86.0" fitWidth="240.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@../images/Logo.jpg" />
+            <Image url="@../Images/Logo.jpg" />
          </image></ImageView>
       <JFXButton fx:id="pureSimulationButton" alignment="CENTER" buttonType="RAISED" layoutX="1086.0" layoutY="20.0" minHeight="20.0" minWidth="40.0" onAction="#startPureSimulation" prefHeight="62.0" prefWidth="160.0" styleClass="normalButton" stylesheets="@Button.css" text="Start PURE Simulation" textAlignment="CENTER" wrapText="true" AnchorPane.rightAnchor="54.0" AnchorPane.topAnchor="20.0">
          <graphic>
@@ -43,7 +43,7 @@
          </graphic></JFXButton>
       <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="1267.0" opacity="0.7" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@../images/close2.png" />
+            <Image url="@../Images/close2.png" />
          </image>
          <effect>
             <InnerShadow />
