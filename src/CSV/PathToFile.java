@@ -9,9 +9,9 @@ public interface PathToFile {
         String myPath = new File("").getAbsolutePath();
 
         if (System.getProperty("os.name").equals("Linux")){
-            System.out.println(myPath);
+//            System.out.println(myPath);
             myPath += subfolder+fileName;
-            System.out.println(myPath);
+//            System.out.println(myPath);
 
         }else{
 

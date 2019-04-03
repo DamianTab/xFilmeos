@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.Serializable;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -72,11 +73,14 @@ public class InformationPane_Controller implements Initializable, Serializable {
 
         title.setText(product.getTitle());
         description.setText(product.getDescription());
-        photo.setImage(new Image(product.getPhotoURL()));
+        File file = new File(product.getPhotoURL());
+        photo.setImage(new Image(file.toURI().toString()));
         productionCountries.setText(product.getProductionCountries());
         length.setText(String.valueOf(product.getLength()));
         rating.setText(String.valueOf(product.getRating()));
         numberOfShows.setText(String.valueOf(product.getHowManyTimeWasShown()));
+
+
         if (product instanceof Movie){
             productLabel.setText("Movie");
             changableTitle1.setText("Actors");

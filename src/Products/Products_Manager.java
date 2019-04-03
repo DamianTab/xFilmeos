@@ -174,11 +174,8 @@ public class Products_Manager implements Serializable, PathToFile {
         }
 
         String photoFile = generate.nextInt(300)+".jpg";
-        System.out.println(photoFile);
         photoFile = PathToFile.getFilePath("/src/Images/",photoFile);
-
-
-//        Druga wersja
+//        Druga wersja ścieżki do pliku
 //        String photoFile = generate.nextInt(300)+".jpg";
 //        System.out.println(photoFile);
 //        photoFile = "src/Images/" + photoFile;
@@ -211,7 +208,6 @@ public class Products_Manager implements Serializable, PathToFile {
         LocalDate date = LocalDate.parse(RandDate[NumberOfProducts]);
 
         String photoFile = generate.nextInt(300)+".jpg";
-        System.out.println(photoFile);
         photoFile = PathToFile.getFilePath("/src/Images/",photoFile);
 
 
@@ -265,7 +261,6 @@ public class Products_Manager implements Serializable, PathToFile {
         }
 
         String photoFile = generate.nextInt(300)+".jpg";
-        System.out.println(photoFile);
         photoFile = PathToFile.getFilePath("/src/Images/",photoFile);
 
         Serial tmpSerial = new Serial(title,photoFile,RandDescription[NumberOfProducts],

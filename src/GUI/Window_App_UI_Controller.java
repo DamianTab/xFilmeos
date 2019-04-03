@@ -49,6 +49,10 @@ public class Window_App_UI_Controller implements Initializable, Serializable {
     private static double xOffset = 0;
     private static double yOffset = 0;
 
+    private boolean fadeInRefreshButton = false;
+    private boolean fadeOutRefreshButton = true;
+    private int whichPaneNow = 1;
+
     @FXML
     public JFXButton dragButton;
 
@@ -424,10 +428,6 @@ public class Window_App_UI_Controller implements Initializable, Serializable {
     }
 
 
-    private boolean fadeInRefreshButton = false;
-    private boolean fadeOutRefreshButton = true;
-    private int whichPaneNow = 1;
-
     public void changePane(String switcher){
         switch (switcher){
             case "M":
@@ -633,8 +633,6 @@ public class Window_App_UI_Controller implements Initializable, Serializable {
 
         File file = new File(product.getPhotoURL());
         Image img = new Image(file.toURI().toString());
-
-//        Image img = new Image(product.getPhotoURL());
         ImageView imageView = new ImageView(img);
         imageView.setFitHeight(320);
         imageView.fitWidthProperty().bind(lbl.widthProperty());
